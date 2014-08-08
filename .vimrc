@@ -107,7 +107,11 @@ set listchars+=extends:>,precedes:<
 " keep splits equally sized
 au VimResized * exe "normal \<c-w>="
 
-set cursorline
+" cursorline settings {{{
+" show cursorline in active buffer
+autocmd BufEnter * set cursorline
+autocmd BufLeave * set nocursorline
+" }}}
 
 " leader {{{
 let mapleader=","
