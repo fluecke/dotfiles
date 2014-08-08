@@ -9,6 +9,7 @@
     c = commit
     ca = commit -a
     amend = "commit --amend "
+    root = "!pwd"
 [color]
     ui = auto
 
