@@ -107,6 +107,8 @@ set listchars+=extends:>,precedes:<
 " keep splits equally sized
 au VimResized * exe "normal \<c-w>="
 
+set cursorline
+
 " leader {{{
 let mapleader=","
 let maplocalleader=","
