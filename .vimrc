@@ -22,6 +22,7 @@ Bundle 'honza/vim-snippets'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'chrisbra/csv.vim'
+Bundle 'scrooloose/nerdtree'
 
 call vundle#end()
 filetype plugin indent on
