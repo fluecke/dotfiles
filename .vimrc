@@ -173,9 +173,8 @@ augroup END
 
 " backup {{{
 set undodir=~/.vim/tmp/undo//
-set backupdir=~/.vim/tmp/backup//
 set undofile
-set backup
+set nobackup
 set noswapfile
 set history=1000
 " }}}
