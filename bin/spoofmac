@@ -1,0 +1,101 @@
+#!/bin/bash
+# @author Florian Lücke
+
+readonly ARGS="$@"
+readonly CONFIGFILE="$HOME/.adresses"
+SILENT=0
+VERBOSE=0
+
+function getMacAdressForDevice() {
+# Loads the mac adress of a device from the config file.
+# @param $1 deviceName. The name of the device.
+    local deviceName=$1
+
+    while read line; do
+        local device=$(echo $line | cut -d' ' -f1)
+        local mac=$(echo $line | cut -d' ' -f2)
+        if [[ $device == $deviceName ]]; then
+            echo $mac
+        fi
+    done < $CONFIGFILE
+}
+
+function storeDefaultMac() {
+# Stores the default mac adress of an interface.
+# @param $1 interface. The name of the interface.
+    local interface="$1"
+
+    adress=$(getMacAdressForDevice ${interface}-default)
+
+    if [[ ! -z $adress ]]; then
+        return
+    fi
+
+    local adress=$(ifconfig $interface ether | grep 'ether' | cut -d' ' -f2)
+
+    if [[ $VERBOSE -eq 1 ]]; then
+        echo Saving $adress as ${interface}-default
+    fi
+
+    echo ${interface}-default $adress >> $CONFIGFILE
+}
+
+function restoreMacAdressForInterface() {
+# Restores the mac adress of an interface to its default.
+# @param $1 interface. The name of the interface.
+    local interface=$1
+
+    adress=$(getMacAdressForDevice ${interface}-default)
+
+    if [[ -z $adress ]]; then
+        echo "invalid interface: $interface"
+        exit 1
+    fi
+
+    setMacAdressForInterface $interface $adress
+}
+
+function setMacAdressForInterface() {
+# sets the mac adress of an interface
+# @param $1 interface. The Name of the interface.
+# @param $2 adress. The new adress of the interface.
+    local interface=$1
+    local mac=$2
+
+    if [[ $SILENT -eq 0 ]]; then
+        echo "Setting adress of $interface to $mac"
+    fi
+
+    if [[ $VERBOSE -eq 1 ]]; then
+        echo ifconfig $interface ether $mac
+    fi
+    ifconfig $interface ether $mac
+}
+
+function main () {
+    local newmac=""
+    local interface=""
+
+    while getopts 'm:n:i:r:sv' arg $ARGS; do
+        case $arg in
+            i) interface=$OPTARG;;
+            m) newmac=$OPTARG;;
+            n) newmac=$(getMacAdressForDevice $OPTARG);;
+            r) restoreMacAdressForInterface $OPTARG; exit;;
+            s) SILENT=1;;
+            v) VERBOSE=1; SILENT=0;;
+            *) echo $arg;;
+        esac
+    done
+
+    if [[ -z newmac ]]; then
+        echo "Please specify a mac adress"
+        exit 1
+    fi
+
+    storeDefaultMac $interface
+
+    setMacAdressForInterface $interface $newmac
+}
+
+main

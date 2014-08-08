@@ -1,0 +1,10 @@
+#!/bin/bash
+
+alias ..="cd .."
+alias psql="psql -h localhost "
+alias ls="gls -F --color "
+alias la="gls -F --color -a "
+alias ll="gls -F --color -l "
+alias sed="gsed "
+alias sort="gsort "
+alias grep="grep --color "

@@ -1,0 +1,33 @@
+[user]
+    name = Florian Lücke
+    email = florian.luecke2@gmail.com
+[alias]
+    co = checkout
+    st = "status --short "
+    lg = !/usr/bin/git log --color=never | vim -R -c \"set nonumber\" -
+    graphviz = "!f() { echo 'digraph git {' ; git log --pretty='format:  %h -> { %p }' \"$@\" | sed 's/[0-9a-f][0-9a-f]*/\"&\"/g' ; echo '}'; }; f"
+    c = commit
+    ca = commit -a
+	amend = "commit --amend "
+[color]
+    ui = auto
+
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold # line info
+    old = red # deletions
+    new = green # additions
+
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+
+[core]
+    excludesfile = $HOME/.gitignore_global
+    editor = /usr/local/bin/vim
