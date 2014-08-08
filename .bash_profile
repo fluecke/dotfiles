@@ -17,7 +17,6 @@ defineColorNames
 
 if [[ $TERM != "dumb" ]]; then
     if [[ $SHELL == "/bin/bash" || $SHELL == "/bin/sh" ]]; then
-        export HISTTIMEFORMAT="[$(tput setaf 6)%F %T$(tput sgr0)]: "
         # define the prompt string
         PS1='\[$blue\]$(shortPath)\[$reset\] $(__git_ps1 "[%s]")'
         PS1+='\[$orange\]λ\[$reset\] '
