@@ -63,6 +63,8 @@ let g:LatexBox_Folding = 1
 let g:LatexBox_viewer = 'open'
 " configure quickfix window
 let g:LatexBox_quickfix = 4
+" prevent selections from being folded
+let g:LatexBox_fold_automatic = 0
 " }}}
 " }}}
 
