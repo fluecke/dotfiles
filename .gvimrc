@@ -5,6 +5,8 @@ set background=light
 colorscheme solarized
 
 set guifont=Sauce\ Code\ Powerline:h12
+
+" hide all scrollbars
 set guioptions-=r
 set guioptions-=R
 set guioptions-=l
