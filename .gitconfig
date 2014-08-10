@@ -8,7 +8,7 @@
     graphviz = "!f() { echo 'digraph git {' ; git log --pretty='format:  %h -> { %p }' \"$@\" | sed 's/[0-9a-f][0-9a-f]*/\"&\"/g' ; echo '}'; }; f"
     c = commit
     ca = commit -a
-    amend = "commit --amend "
+    amend = commit --amend
     root = "!pwd"
 [color]
     ui = auto
