@@ -29,6 +29,10 @@ else
     export PS1='$(getPWD) $(getGitBranch)$(getGitStatus)λ '
 fi
 
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
+
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell
 
