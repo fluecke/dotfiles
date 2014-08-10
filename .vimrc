@@ -23,6 +23,7 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'chrisbra/csv.vim'
 Bundle 'scrooloose/nerdtree'
+Bundle 'takac/vim-hardtime'
 
 call vundle#end()
 filetype plugin indent on
@@ -55,6 +56,8 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:syntastic_error_symbol = '!'
 
 let g:solarized_termcolors=256
+
+let g:hardtime_default_on = 1
 
 " latex box {{{
 " enable folding
