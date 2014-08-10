@@ -16,16 +16,6 @@ function shortPath() {
     echo $short
 }
 
-cs () {
-    if [[ $# -eq 0 ]]; then
-        command cd
-        ls
-    else
-        command cd "$*"
-        ls
-    fi
-}
-
 function defineColorNames() {
     if tput setaf 1 &> /dev/null; then
         tput sgr0; # reset colors
