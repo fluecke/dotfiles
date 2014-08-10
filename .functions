@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# shorten a path by removing everything but the first two letters
 function shortPath() {
+# shorten a path by removing everything but the first two letters
+# of every path component
     local path=$PWD
 
     # remove any trailing /
