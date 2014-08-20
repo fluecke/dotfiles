@@ -52,6 +52,8 @@ let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 " }}}
 
+let g:ctrlp_working_path_mode = 'cra'
+
 " syntastic
 let g:syntastic_error_symbol = '!'
 
