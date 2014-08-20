@@ -22,8 +22,8 @@ Bundle 'honza/vim-snippets'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'chrisbra/csv.vim'
-Bundle 'scrooloose/nerdtree'
 Bundle 'takac/vim-hardtime'
+Bundle 'kien/ctrlp.vim'
 
 call vundle#end()
 filetype plugin indent on
