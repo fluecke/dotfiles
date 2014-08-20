@@ -112,6 +112,8 @@ set listchars+=extends:>,precedes:<
 " keep splits equally sized
 au VimResized * exe "normal \<c-w>="
 
+cnoremap help vert help
+
 " cursorline settings {{{
 " show cursorline in active buffer
 autocmd BufEnter * set cursorline
