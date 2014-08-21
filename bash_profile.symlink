@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# source config files
+# source config files {{{
 for f in ~/.{exports,aliases,functions,dircolors}; do
     [[ -r "$f" ]] && [[ -f "$f" ]] && source "$f"
 done
@@ -13,8 +13,14 @@ if [[ -f ~/.git-prompt.sh ]]; then
     source ~/.git-prompt.sh
 fi
 
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
+# }}}
+
 defineColorNames
 
+# define prompt {{{
 if [[ $TERM != "dumb" ]]; then
     if [[ $SHELL == "/bin/bash" || $SHELL == "/bin/sh" ]]; then
         # define the prompt string
@@ -28,10 +34,7 @@ if [[ $TERM != "dumb" ]]; then
 else
     export PS1='$(getPWD) $(getGitBranch)$(getGitStatus)λ '
 fi
-
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
-fi
+# }}}
 
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell
