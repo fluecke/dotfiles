@@ -1,29 +1,29 @@
 " .vimrc
 " Author: Florian Lücke
 
-" load bundles (vundle) {{{
+" load plugins (vundle) {{{
 set nocompatible
 filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Bundle 'gmarik/Vundle.vim'
-Bundle 'bling/vim-airline'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-commentary'
-Bundle 'scrooloose/syntastic'
-Bundle 'LaTeX-Box-Team/LaTeX-Box'
-Bundle 'tomasr/molokai'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'SirVer/ultisnips'
-Bundle 'honza/vim-snippets'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'chrisbra/csv.vim'
-Bundle 'takac/vim-hardtime'
-Bundle 'kien/ctrlp.vim'
+Plugin 'gmarik/Vundle.vim'
+Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-commentary'
+Plugin 'scrooloose/syntastic'
+Plugin 'LaTeX-Box-Team/LaTeX-Box'
+Plugin 'tomasr/molokai'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'chrisbra/csv.vim'
+Plugin 'takac/vim-hardtime'
+Plugin 'kien/ctrlp.vim'
 
 call vundle#end()
 filetype plugin indent on
