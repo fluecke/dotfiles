@@ -31,14 +31,10 @@ filetype plugin indent on
 
 " bundle settings {{{
 " airline {{{
-" better font
-let g:airline_powerline_fonts = 1
-" use airlines tabline
-let g:airline#extensions#tabline#enabled = 1
-" show tab number, not number of buffers
-let g:airline#extensions#tabline#tab_nr_type = 1
-" show tabs not buffers, default vim tab behaviour
-let g:airline#extensions#tabline#show_buffers = 0
+let g:airline_powerline_fonts = 1                   " better font
+let g:airline#extensions#tabline#enabled = 1        " use airlines tabline
+let g:airline#extensions#tabline#tab_nr_type = 1    " don't show buffer count
+let g:airline#extensions#tabline#show_buffers = 0   " show tabs not buffers
 " }}}
 
 " youcompleteme {{{
@@ -57,19 +53,13 @@ let g:ctrlp_working_path_mode = 'cra'
 " syntastic
 let g:syntastic_error_symbol = '!'
 
-let g:solarized_termcolors=256
-
 let g:hardtime_default_on = 1
 
 " latex box {{{
-" enable folding
-let g:LatexBox_Folding = 1
-" pdf viewer
-let g:LatexBox_viewer = 'open'
-" configure quickfix window
-let g:LatexBox_quickfix = 4
-" prevent selections from being folded
-let g:LatexBox_fold_automatic = 0
+let g:LatexBox_Folding = 1          " enable folding
+let g:LatexBox_viewer = 'open'      " pdf viewer
+let g:LatexBox_quickfix = 4         " configure quickfix window
+let g:LatexBox_fold_automatic = 0   " prevent selections from being folded
 " }}}
 " }}}
 
