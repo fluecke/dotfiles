@@ -89,9 +89,6 @@ set shell=bash\ --login
 " make backspace work as expected
 set backspace=indent,eol,start
 
-" divider for vertical windows
-set fillchars+=vert:│
-
 let g:sh_fold_enabled=1
 
 " always keep two line above and below the cursor
@@ -132,7 +129,7 @@ set smarttab
 
 " show tabs
 set list
-set listchars+=tab:>·
+set listchars+=tab:>-
 
 " highlight trailing whitespace {{{
 hi ExtraWhitespace ctermbg=red guibg=red
