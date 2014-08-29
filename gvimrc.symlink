@@ -4,6 +4,10 @@
 set background=light
 colorscheme solarized
 
+highlight GitGutterChange guifg=#d33682
+highlight GitGutterAdd guifg=#859900
+highlight GitGutterDelete guifg=#dc322f
+
 set guifont=Sauce\ Code\ Powerline:h12
 
 " hide all scrollbars
