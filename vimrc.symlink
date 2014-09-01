@@ -1,6 +1,11 @@
 " .vimrc
 " Author: Florian Lücke
 
+" leader {{{
+let mapleader=","
+let maplocalleader=","
+" }}}
+
 " load plugins (vundle) {{{
 set nocompatible
 filetype off
@@ -130,11 +135,6 @@ au VimResized * exe "normal \<c-w>="
 " show cursorline in active buffer
 autocmd BufEnter * set cursorline
 autocmd BufLeave * set nocursorline
-" }}}
-
-" leader {{{
-let mapleader=","
-let maplocalleader=","
 " }}}
 
 " tabs, spaces, wrapping {{{
