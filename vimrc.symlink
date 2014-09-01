@@ -102,8 +102,10 @@ let g:LatexBox_fold_automatic = 0   " prevent selections from being folded
 syntax on
 syntax enable
 
-set background=dark
-colorscheme solarized
+if !has('gui_running')
+    set background=dark
+    colorscheme solarized
+endif
 
 let g:tex_flavor = "latex"
 
