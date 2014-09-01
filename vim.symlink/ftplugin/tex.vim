@@ -1,7 +1,6 @@
 set textwidth=80
 
 set cole=2
-set ambw=double
 
 imap <buffer> [[     \begin{
 imap <buffer> ]]     <Plug>LatexCloseCurEnv
