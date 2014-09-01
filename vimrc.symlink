@@ -102,7 +102,6 @@ scriptencoding utf-8
 set encoding=utf-8
 
 set autochdir       " cd to directory of current file
-set ttyfast         " redraw more characters
 set number          " enable line numbers
 set laststatus=2    " always show statusbar
 set equalalways     " make windows the same size
