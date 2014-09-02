@@ -65,6 +65,7 @@ let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
 " neosnippet {{{
 " expand snippets with <CR>
+let g:neosnippet#snippets_directory = "~/.vim/snippets"
 imap <expr><CR> neosnippet#expandable() ?
         \ "\<Plug>(neosnippet_expand)"
         \: "\<CR>"

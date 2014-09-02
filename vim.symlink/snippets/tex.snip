@@ -1,0 +1,23 @@
+snippet     it
+alias       item
+options     head
+    \item 
+
+snippet     itd
+alias       item[
+options     head
+    \item[${1}] ${0}
+
+snippet     enum
+alias       enumerate
+options     head
+    \begin{enumerate}
+        \item ${0}
+    \end{enumerate}
+
+snippet     description
+alias       desc
+options     head
+    \begin{description}
+        \item[${1}] ${0}
+    \end{description}
