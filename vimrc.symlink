@@ -22,21 +22,29 @@ Plugin 'scrooloose/syntastic'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'tomasr/molokai'
 Plugin 'honza/vim-snippets'
-Plugin 'Shougo/neocomplete.vim'
-Plugin 'Shougo/neosnippet.vim'
-Plugin 'Shougo/neosnippet-snippets'
-Plugin 'Shougo/unite.vim'
-Plugin 'Shougo/vimproc.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'fluecke/vim-colors-solarized'
 Plugin 'chrisbra/csv.vim'
-Plugin 'takac/vim-hardtime'
+Plugin 'mbbill/undotree'
+Plugin 'SirVer/ultisnips'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'kien/ctrlp.vim'
 
 call vundle#end()
 filetype plugin indent on
 " }}}
 
 " bundle settings {{{
+" cttrlp {{{
+let g:ctrlp_working_path_mode = 'cra'
+" }}}
+
+" vim-indent-guides {{{
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
+" }}}
+
 " airline {{{
 let g:airline_powerline_fonts = 1                   " better font
 let g:airline#extensions#tabline#enabled = 1        " use airlines tabline
@@ -44,39 +52,26 @@ let g:airline#extensions#tabline#tab_nr_type = 1    " don't show buffer count
 let g:airline#extensions#tabline#show_buffers = 0   " show tabs not buffers
 " }}}
 
-" unite.vim {{{
-let g:unite_source_history_yank_enable = 1
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-nnoremap <C-p> :Unite -no-split -start-insert buffer file_rec/async<CR>
-"}}}
+" undotree.vim {{{
+let g:undotree_WindowLayout = 3
+let g:undotree_SplitWidth = 45
+" }}}
+
+" youcompleteme {{{
+let g:ycm_key_list_select_completion = ['<C-n>']
+let g:ycm_key_list_previous_completion = ['<C-p>']
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+" }}}
+
+" ultisnips {{{
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+" }}}
 
 " syntastic
 let g:syntastic_error_symbol = '!'
-
-let g:hardtime_default_on = 1
-
-" neocomplete {{{
-let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-"}}}
-
-" neosnippet {{{
-" expand snippets with <CR>
-let g:neosnippet#snippets_directory = "~/.vim/snippets"
-imap <expr><CR> neosnippet#expandable() ?
-        \ "\<Plug>(neosnippet_expand)"
-        \: "\<CR>"
-" if a senippet was expanded jump with tab
-imap <expr><TAB> neosnippet#jumpable() ?
-        \ "\<Plug>(neosnippet_jump)"
-        \: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#jumpable() ?
-        \ "\<Plug>(neosnippet_jump)"
-        \: "\<TAB>"
-" }}}
 
 " latex box {{{
 let g:LatexBox_Folding = 1          " enable folding
