@@ -83,8 +83,6 @@ let g:LatexBox_fold_automatic = 0   " prevent selections from being folded
 " }}}
 
 " vim settings {{{
-inoremap jk <ESC>
-
 syntax on
 syntax enable
 
@@ -93,36 +91,32 @@ if !has('gui_running')
     colorscheme solarized
 endif
 
-let g:tex_flavor = "latex"
-
 " use utf-8
 scriptencoding utf-8
 set encoding=utf-8
 
+set hidden
 set autochdir       " cd to directory of current file
 set number          " enable line numbers
 set laststatus=2    " always show statusbar
-set equalalways     " make windows the same size
-
 set shell=bash\ --login
-
-" make backspace work as expected
-set backspace=indent,eol,start
-
+set backspace=indent,eol,start  " make backspace work as expected
+let g:tex_flavor = "latex"      " tex files are latex files
 let g:sh_fold_enabled=1
-
-" always keep two line above and below the cursor
-set scrolloff=2
+set scrolloff=2     " keep two line above and below
 set sidescrolloff=80
+set autoread        " reload files that were changed
 
-" reload files that were changed
-set autoread
+" configure listchars {{{
+set list
+set listchars-=eol:$            " do not show newlines
+set listchars+=extends:>,precedes:<     " indicate long lines
+" }}}
 
-set listchars-=eol:$
-set listchars+=extends:>,precedes:<
-
-" keep splits equally sized
+" keep splits equally sized {{{
 au VimResized * exe "normal \<c-w>="
+set equalalways     " make windows the same size
+" }}}
 
 " cursorline settings {{{
 " show cursorline in active buffer
@@ -140,7 +134,6 @@ let &colorcolumn=join(range(81,999),",")
 set smarttab
 
 " show tabs
-set list
 set listchars+=tab:>-
 
 " highlight trailing whitespace {{{
@@ -205,6 +198,8 @@ set noerrorbells
 " }}}
 
 " keymappings {{{
+inoremap jk <ESC>
+
 " don't move on *
 nnoremap * *<C-o>
 " make searching \v(ery-magic)
