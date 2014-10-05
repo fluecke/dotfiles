@@ -82,6 +82,8 @@ let g:LatexBox_fold_automatic = 0   " prevent selections from being folded
 " }}}
 
 " vim settings {{{
+inoremap jk <ESC>
+
 syntax on
 syntax enable
 
