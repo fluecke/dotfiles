@@ -165,7 +165,7 @@ set wildmenu
 
 set wildignore+=.DS_Store                       " on OS X
 set wildignore+=.git                            " version control
-set wildignore+=*.aux,*.out,*.toc               " Latex files
+set wildignore+=*.aux,*.out,*.toc,*.bbl,*.fls,*.blg,*.bcf               " Latex files
 set wildignore+=*.jpg,*.gif,*.bmp,*.png,*.jpeg  " images
 set wildignore+=*.class,*.jar                   " java files
 " }}}
