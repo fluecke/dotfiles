@@ -40,6 +40,7 @@ filetype plugin indent on
 " bundle settings {{{
 " cttrlp {{{
 let g:ctrlp_working_path_mode = 'cra'
+let g:ctrlp_cmd = 'CtrlPMixed'
 " }}}
 
 " vim-indent-guides {{{
