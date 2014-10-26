@@ -81,7 +81,7 @@ let g:syntastic_quiet_messages = {"type": "syntax", "regex": "Command terminated
 
 " latex box {{{
 let g:LatexBox_Folding = 1          " enable folding
-let g:LatexBox_viewer = 'open'      " pdf viewer
+let g:LatexBox_viewer = 'open -a "Skim" '      " pdf viewer
 let g:LatexBox_quickfix = 4         " configure quickfix window
 let g:LatexBox_fold_automatic = 0   " prevent selections from being folded
 " }}}
