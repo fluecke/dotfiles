@@ -30,6 +30,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'kien/ctrlp.vim'
+Plugin 'vim-scripts/gnuplot.vim'
 
 call vundle#end()
 filetype plugin indent on
