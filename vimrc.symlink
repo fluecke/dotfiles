@@ -111,6 +111,7 @@ let g:sh_fold_enabled=1
 set scrolloff=2     " keep two line above and below
 set sidescrolloff=80
 set autoread        " reload files that were changed
+set backupcopy=yes
 
 " configure listchars {{{
 set list
