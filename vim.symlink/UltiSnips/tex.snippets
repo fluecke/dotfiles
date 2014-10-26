@@ -13,3 +13,17 @@ endsnippet
 snippet foott "\footnotetext" b
 \footnotetext{${1}} $0
 endsnippet
+
+snippet alg "Algorithmic Environment" b
+\begin{algorithm}
+	\caption{${1}}
+	\begin{algorithmic}
+		${2}
+	\end{algorithmic}\label{${3}}
+\end{algorithm}
+$0
+endsnippet
+
+snippet tt "\texttt" b
+\texttt{${1:${VISUAL}}}
+endsnippet
