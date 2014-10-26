@@ -167,9 +167,14 @@ set wildmenu
 
 set wildignore+=.DS_Store                       " on OS X
 set wildignore+=.git                            " version control
-set wildignore+=*.aux,*.out,*.toc,*.bbl,*.fls,*.blg,*.bcf               " Latex files
+set wildignore+=*.bcf,*.run.xml,*.fdb_latexmk   " Latex files
+set wildignore+=*.out,*.toc,*.bbl,*.fls,*.blg   " more Latex files
+set wildignore+=*.aux                           " even more Latex files
 set wildignore+=*.jpg,*.gif,*.bmp,*.png,*.jpeg  " images
 set wildignore+=*.class,*.jar                   " java files
+set wildignore+=*.log
+set wildignore+=*.pdf
+set wildignore+=*.gz*,*.tar,*.zip                " archives
 " }}}
 
 " return to the same line when reopening a file {{{
