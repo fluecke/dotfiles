@@ -74,8 +74,10 @@ let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 " }}}
 
-" syntastic
+" syntastic {{{
 let g:syntastic_error_symbol = '!'
+let g:syntastic_quiet_messages = {"type": "syntax", "regex": "Command terminated with space."}
+" }}}
 
 " latex box {{{
 let g:LatexBox_Folding = 1          " enable folding
