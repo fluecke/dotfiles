@@ -1,0 +1,19 @@
+#!/bin/bash
+
+readonly AUFGABE=$1
+
+function showName() {
+    local groupid=$1
+    awk -F ';' "{if (\$1 == $groupid) {print \$1\": \"\$3\" \"\$2}}" *.csv
+}
+
+for group in $(find . ! -path . -type d | sort -k 1.3n); do
+    showName ${group#./}
+    if find $group -name "*${AUFGABE}0?.gif" | egrep '.*'; then
+        find $group -name "*${AUFGABE}0?.gif" | xargs open -a "Pixelmator"
+        read -s
+    else
+        echo "ne"
+    fi
+    echo ""
+done
