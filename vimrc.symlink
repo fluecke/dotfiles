@@ -45,8 +45,9 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 " airline {{{
 let g:airline_powerline_fonts = 1                   " better font
 let g:airline#extensions#tabline#enabled = 1        " use airlines tabline
-let g:airline#extensions#tabline#tab_nr_type = 1    " don't show buffer count
-let g:airline#extensions#tabline#show_buffers = 0   " show tabs not buffers
+let g:airline#extensions#tabline#buffer_nr_show = 1
+"let g:airline#extensions#tabline#tab_nr_type = 1    " don't show buffer count
+"let g:airline#extensions#tabline#show_buffers = 0   " show tabs not buffers
 " }}}
 
 " undotree.vim {{{
