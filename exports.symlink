@@ -8,8 +8,6 @@ PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
 PATH=$HOME/.bin:$PATH
 export PATH
 
-export EDITOR="/usr/local/bin/vim "
-
 export GIT_PS1_SHOWDIRTYSTATE="1"
 export GIT_PS1_SHOWUNTRACKEDFILES="1"
 
