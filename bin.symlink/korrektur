@@ -10,7 +10,7 @@ function showName() {
 for group in $(find . ! -path . -type d | sort -k 1.3n); do
     showName ${group#./}
     if find $group -name "*${AUFGABE}0?.gif" | egrep '.*'; then
-        find $group -name "*${AUFGABE}0?.gif" | xargs open -a "Pixelmator"
+        find $group -name "*${AUFGABE}0?.gif" | sort -r | xargs open -a "Pixelmator"
         read -s
     else
         echo "ne"
