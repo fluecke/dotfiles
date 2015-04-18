@@ -17,3 +17,6 @@ export HISTFILESIZE=3000
 export HISTSIZE=3000
 export HISTCONTROL=ignorespace:ignoredups:erasedups
 
+if [[ $(uname) == "Darwin" ]]; then
+    export EDITOR="mvim -v"
+fi
