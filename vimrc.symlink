@@ -99,7 +99,7 @@ set hidden
 set autochdir       " cd to directory of current file
 set number          " enable line numbers
 set laststatus=2    " always show statusbar
-set shell=bash\ --login
+set shell=bash
 set backspace=indent,eol,start  " make backspace work as expected
 let g:tex_flavor = "latex"      " tex files are latex files
 let g:sh_fold_enabled=1
