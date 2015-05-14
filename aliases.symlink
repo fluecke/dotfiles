@@ -7,7 +7,7 @@ if [[ $(uname) == "Darwin" ]]; then
     ls="gls"
     alias sed="gsed "
     alias sort="gsort "
-    alias vim="mvim -v "
+    alias vim="nvim "
 elif [[ $(uname) == "Linux" ]]; then
     ls="ls"
 fi
