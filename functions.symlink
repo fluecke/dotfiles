@@ -1,21 +1,5 @@
 #!/bin/bash
 
-function shortPath() {
-# shorten a path by removing everything but the first two letters
-# of every path component
-    local path=$PWD
-
-    # remove any trailing /
-    local path=${path%/}
-
-    # take the first two letters plus an optional . from every path component
-    local short=$(echo $path | egrep -o '\/(\.?[A-Za-z0-9_]{1,2})')
-    local short=$(echo $short | xargs -n 1 echo -n | xargs echo)
-
-    # add the last path component to the shortened path
-    echo $short
-}
-
 function defineColorNames() {
     if tput setaf 1 &> /dev/null; then
         tput sgr0; # reset colors
@@ -30,6 +14,7 @@ function defineColorNames() {
         purple=$(tput setaf 5)
         cyan=$(tput setaf 6)
         white=$(tput setaf 7)
+        brightred=$(tput setaf 9)
     else
         bold=''
         reset="\e[0m"

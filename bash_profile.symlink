@@ -25,18 +25,11 @@ fi
 defineColorNames
 
 # define prompt {{{
-if [[ $TERM != "dumb" ]]; then
-    if [[ $SHELL == "/bin/bash" || $SHELL == "/bin/sh" ]]; then
-        # define the prompt string
-        PS1='\[$blue\]$(shortPath)\[$reset\] $(__git_ps1 "[%s]")'
-        PS1+='\[$bold$red\]λ\[$reset\] '
-        export PS1
-
-        PS2='\[$orange\]→ \[$reset\]'
-        export PS2
-    fi
-else
-    export PS1='$(getPWD) $(getGitBranch)$(getGitStatus)λ '
+if [[ $SHELL == "/bin/bash" || $SHELL == "/bin/sh" ]]; then
+    # define the prompt string
+    GIT_PS1_SHOWCOLORHINTS=true
+    PROMPT_COMMAND='__git_ps1 "\n\d, \A \[$blue$bold\]$(pwd)\[$reset\]\n" '
+    PROMPT_COMMAND+='"\[$bold$brightred\]→ \[$reset\] " "[%s] "'
 fi
 # }}}
 
