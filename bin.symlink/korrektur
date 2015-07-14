@@ -1,19 +1,74 @@
 #!/bin/bash
 
-readonly AUFGABE=$1
+readonly EXERCISE=$1
+START_TIME=""
+END_TIME=""
 
 function showName() {
     local groupid=$1
     awk -F ';' "{if (\$1 == $groupid) {print \$1\": \"\$3\" \"\$2}}" *.csv
 }
 
-for group in $(find . ! -path . -type d | sort -k 1.3n); do
-    showName ${group#./}
-    if find $group -name "*${AUFGABE}0?.gif" | egrep '.*'; then
-        find $group -name "*${AUFGABE}0?.gif" | sort -r | xargs open -a "Pixelmator"
-        read -s
-    else
-        echo "ne"
+function openFiles() {
+    local application=${1:-"Preview"}
+    local reverse=$2
+    shift; shift
+    local files="$@"
+    if [[ $reverse != "" ]]; then
+        files=$(printAll $files | sort -r)
     fi
-    echo ""
-done
+
+    open -a $application $files
+}
+
+function handleOption() {
+    local option=$1
+    local group=$2
+    local groupid=${group#./}
+
+    case $option in
+        p) pdfs=$(findFiles "pdf" "$group"); openFiles "" "" "$pdfs";;
+        g) gifs=$(findFiles "gif" "$group"); openFiles "Pixelmator" 1 "$gifs";;
+        n) ;;
+    esac
+}
+
+function findFiles() {
+    local fileType="$1"
+    local group="$2"
+    local gifs=$(find "$group" -name "*${EXERCISE}_a*.$fileType")
+    printAll "$gifs"
+}
+
+function printAll() {
+    local all="$@"
+    for item in $all; do
+        echo "$item"
+    done
+}
+
+function main() {
+    trap 'echo; echo $START_TIME; echo $(date +"%A %d.%m. %H:%M"); exit' INT
+    START_TIME=$(date +"%A %d.%m. %H:%M")
+    for group in $(find . ! -path . -type d | sort -k 1.3n); do
+        local groupid=${group#./}
+        showName "$groupid"
+        local gifs=$(findFiles "gif" "$group")
+        if printAll "$gifs" | egrep '.+'; then
+            local option="g"
+            while [[ "$option" != "" ]]; do
+                handleOption "$option" "$group"
+                read option
+                option=$(echo "$option" | tr "[[:upper:]]" "[[:lower:]]")
+            done
+        else
+            echo "ne"
+        fi
+        echo ""
+    done
+    echo $START_TIME
+    date +"%A %d.%m. %H:%M"
+}
+
+main
+
