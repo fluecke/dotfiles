@@ -87,10 +87,9 @@ let g:syntastic_quiet_messages = {"type": "syntax", "regex": "Command terminated
 " }}}
 
 " vim-latex {{{
-let g:latex_fold_automatic = 0
-let g:latex_latexmk_continuous = 0
-let g:latex_viewer = 'open -a "Skim" '
-let g:latex_latexmk_background = 1
+let g:vimtex_fold_automatic = 0
+let g:vimtex_view_general_viewer = 'open'
+let g:vimtex_view_general_options = '-a Skim'
 " }}}
 " }}}
 
