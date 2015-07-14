@@ -16,3 +16,5 @@
     excludesfile = ~/.gitignore_global
 [diff "color"]
 	meta = blue
+[push]
+	default = simple
