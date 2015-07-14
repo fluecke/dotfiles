@@ -21,13 +21,15 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-git'
 Plugin 'scrooloose/syntastic'
 Plugin 'tomasr/molokai'
-Plugin 'honza/vim-snippets'
+if has('python') && (v:version >= 704)
+    Plugin 'SirVer/ultisnips'
+    Plugin 'honza/vim-snippets'
+    Plugin 'Valloric/YouCompleteMe' " Maybe this needs to go
+endif
 Plugin 'airblade/vim-gitgutter'
 Plugin 'fluecke/vim-colors-solarized'
 Plugin 'chrisbra/csv.vim'
 Plugin 'mbbill/undotree'
-Plugin 'SirVer/ultisnips'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'kien/ctrlp.vim'
 Plugin 'vim-scripts/gnuplot.vim'
 Plugin 'lervag/vim-latex'
@@ -56,17 +58,27 @@ let g:undotree_SplitWidth = 45
 " }}}
 
 " youcompleteme {{{
-let g:ycm_key_list_select_completion = ['<C-n>']
-let g:ycm_key_list_previous_completion = ['<C-p>']
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_filetype_blacklist = { 'tex': 1 }
+if has('python') && (v:version >= 704)
+    let g:ycm_key_list_select_completion = ['<C-n>']
+    let g:ycm_key_list_previous_completion = ['<C-p>']
+    let g:ycm_autoclose_preview_window_after_completion = 1
+    let g:ycm_autoclose_preview_window_after_insertion = 1
+
+    if !exists('g:ycm_semantic_triggers')
+        let g:ycm_semantic_triggers = {}
+    endif
+    let g:ycm_semantic_triggers.tex = [
+                \ 're!\\[A-Za-z]*(ref|cite)[A-Za-z]*([^]]*])?{([^}]*, ?)*'
+                \ ]
+endif
 " }}}
 
 " ultisnips {{{
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+if has('python') && (v:version >= 704)
+    let g:UltiSnipsExpandTrigger = "<tab>"
+    let g:UltiSnipsJumpForwardTrigger = "<tab>"
+    let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+endif
 " }}}
 
 " syntastic {{{
