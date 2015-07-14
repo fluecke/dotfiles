@@ -35,4 +35,8 @@ fi
 
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell
+
+ITERM_INTEGRATION_FILE="~/.iterm2_shell_integration.bash"
+[[ -r $ITERM_INTEGRATION_FILE ]] && [[ -f $ITERM_INTEGRATION_FILE ]] && source $ITERM_INTEGRATION_FILE
+
 # vim:fdm=marker:
