@@ -24,6 +24,11 @@ export HISTSIZE=3000
 export HISTCONTROL=ignoreboth:erasedups
 export HISTTIMEFORMAT='%F %T '
 
+################################################################################
+# EDITOR
+################################################################################
 if [[ $(uname) == "Darwin" ]]; then
     export EDITOR="nvim"
+else
+    export EDITOR="vim"
 fi
