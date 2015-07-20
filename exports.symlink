@@ -18,10 +18,11 @@ export GIT_PS1_SHOWCOLORHINTS="1"
 
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
-export HISTIGNORE="ls:cd:pwd"
+export HISTIGNORE="ls*:cd*:pwd*:fg*:bg*:history*:git c:git amend:git st*:git {diff,log,push,pull}"
 export HISTFILESIZE=3000
 export HISTSIZE=3000
-export HISTCONTROL=ignorespace:ignoredups:erasedups
+export HISTCONTROL=ignoreboth:erasedups
+export HISTTIMEFORMAT='%F %T '
 
 if [[ $(uname) == "Darwin" ]]; then
     export EDITOR="nvim"
