@@ -19,6 +19,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-git'
+Plugin 'tpope/vim-vinegar'
 Plugin 'scrooloose/syntastic'
 Plugin 'tomasr/molokai'
 if has('python') && (v:version >= 704)
@@ -27,12 +28,15 @@ if has('python') && (v:version >= 704)
     Plugin 'Valloric/YouCompleteMe' " Maybe this needs to go
 endif
 Plugin 'airblade/vim-gitgutter'
-Plugin 'fluecke/vim-colors-solarized'
 Plugin 'chrisbra/csv.vim'
 Plugin 'mbbill/undotree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'vim-scripts/gnuplot.vim'
 Plugin 'lervag/vim-latex'
+Plugin 'EinfachToll/DidYouMean'
+Plugin 'frankier/neovim-colors-solarized-truecolor-only'
+Plugin 'gerw/vim-HiLinkTrace'
+Plugin 'scrooloose/nerdtree'
 
 call vundle#end()
 filetype plugin indent on
@@ -124,7 +128,6 @@ scriptencoding utf-8
 set encoding=utf-8
 
 set hidden
-set autochdir       " cd to directory of current file
 set number          " enable line numbers
 set laststatus=2    " always show statusbar
 set shell=bash
@@ -135,6 +138,9 @@ set scrolloff=2     " keep two line above and below
 set sidescrolloff=80
 set autoread        " reload files that were changed
 set backupcopy=yes
+
+autocmd BufEnter * let &titlestring = 'vim ' . expand("%:t")
+set title
 
 " configure listchars {{{
 set list
@@ -149,8 +155,11 @@ set equalalways     " make windows the same size
 
 " cursorline settings {{{
 " show cursorline in active buffer
-autocmd BufEnter * set cursorline
-autocmd BufLeave * set nocursorline
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
 " }}}
 
 " tabs, spaces, wrapping {{{
@@ -236,8 +245,6 @@ inoremap jk <ESC>
 
 " don't move on *
 nnoremap * *<C-o>
-" make searching \v(ery-magic)
-nnoremap / /\v
 
 " go to end with <C-e> in command-line mode
 cnoremap <C-e> <end>
@@ -246,6 +253,9 @@ cnoremap <C-a> <home>
 
 " remove highlights with C-c in normal mode
 nmap <C-c> :let @/ = ""<CR>
+
+nnoremap q: :q
+nnoremap Q <NOP>
 
 " prevent using arrow keys {{{
 map <up> <nop>
