@@ -9,6 +9,7 @@ export PATH
 
 export GIT_PS1_SHOWDIRTYSTATE="1"
 export GIT_PS1_SHOWUNTRACKEDFILES="1"
+export GIT_PS1_SHOWCOLORHINTS="1"
 
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 

@@ -27,7 +27,6 @@ defineColorNames
 # define prompt {{{
 if [[ $SHELL == "/bin/bash" || $SHELL == "/bin/sh" ]]; then
     # define the prompt string
-    GIT_PS1_SHOWCOLORHINTS=true
     PROMPT_COMMAND='__git_ps1 "\n\d, \A \[$blue$bold\]$(pwd)\[$reset\]\n" '
     PROMPT_COMMAND+='"\[$bold$brightred\]→ \[$reset\] " "[%s] "'
 fi
