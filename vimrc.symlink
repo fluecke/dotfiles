@@ -37,6 +37,7 @@ Plugin 'EinfachToll/DidYouMean'
 Plugin 'frankier/neovim-colors-solarized-truecolor-only'
 Plugin 'gerw/vim-HiLinkTrace'
 Plugin 'scrooloose/nerdtree'
+Plugin 'fluecke/dot.vim'
 
 call vundle#end()
 filetype plugin indent on
