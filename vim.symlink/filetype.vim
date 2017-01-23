@@ -4,4 +4,5 @@ endif
 
 augroup filetypedetect
     au! BufNewFile,BufRead *.plt,*.gnuplot setf gnuplot
+    au! BufNewFile,BufRead *.csv setf csv
 augroup END
