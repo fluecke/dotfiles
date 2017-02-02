@@ -1,0 +1,339 @@
+" .vimrc
+" Author: Florian Lücke
+
+" leader {{{
+let mapleader="\<Space>"
+let maplocalleader="\<Space>"
+" }}}
+
+" load plugins {{{
+if empty(glob("~/.vim/autoload/plug.vim"))
+    execute '!mkdir -p ~/.vim/plugged'
+    execute '!mkdir -p ~/.vim/autoload'
+    " Download the actual plugin manager
+    execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+endif
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'EinfachToll/DidYouMean'
+Plug 'chrisbra/csv.vim'
+Plug 'fluecke/dot.vim', {'for': 'dot'}
+Plug 'lifepillar/vim-solarized8'
+Plug 'lervag/vimtex', {'for': 'tex'}
+Plug 'mbbill/undotree'
+Plug 'tomasr/molokai'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-git', {'for': 'git'}
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vinegar'
+Plug 'vim-scripts/gnuplot.vim', {'for': 'gnuplot'}
+if has('python') && (v:version >= 704)
+    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+    Plug 'davidhalter/jedi-vim', {'for': 'python'}
+endif
+Plug 'chrisbra/Colorizer'
+
+filetype plugin indent on
+call plug#end()
+" }}}
+
+" bundle settings {{{
+
+" undotree.vim {{{
+let g:undotree_WindowLayout = 3
+let g:undotree_SplitWidth = 45
+" }}}
+
+" ultisnips {{{
+if has('python') && (v:version >= 704)
+    let g:UltiSnipsExpandTrigger = "<tab>"
+    let g:UltiSnipsJumpForwardTrigger = "<tab>"
+    let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+endif
+" }}}
+
+" vim-latex {{{
+let g:vimtex_fold_enabled = 1
+let g:vimtex_fold_manual = 1
+let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+let g:vimtex_view_general_options = '@line @pdf @tex'
+" }}}
+" }}}
+
+" vim settings {{{
+
+" statusbar {{{
+autocmd InsertEnter * call SetStatusline(1, v:insertmode)
+autocmd InsertLeave * call SetStatusline(0, v:insertmode)
+autocmd BufEnter * call SetStatusline(0, v:insertmode)
+nnoremap <silent> <expr> <SID>SetStatusline SetStatusline(0, v:insertmode)
+vnoremap <silent> <expr> <SID>SetStatusline SetStatusline(0, v:insertmode)
+nnoremap <silent> <script> v v<SID>SetStatusline
+nnoremap <silent> <script> V V<SID>SetStatusline
+nnoremap <silent> <script> <C-v> <C-v><SID>SetStatusline
+vnoremap <silent> <script> v v<SID>SetStatusline
+vnoremap <silent> <script> V V<SID>SetStatusline
+vnoremap <silent> <script> <C-v> <C-v><SID>SetStatusline
+vnoremap <silent> <script> <ESC> <ESC><SID>SetStatusline
+
+function! SetStatusline(enter, mode)
+    set statusline=    " clear the statusline for when vimrc is reloaded
+    let the_mode = mode()
+    if the_mode == "n"
+        if a:enter == 0
+            set statusline+=%#NormalMode#
+            set statusline+=\ %{'NORMAL'}
+        else
+            set statusline+=%#InsertMode#
+            set statusline+=\ %{'INSERT'}
+        endif
+    elseif the_mode == "i"
+        set statusline+=%#InsertMode#
+        set statusline+=%{'INSERT'}
+    elseif the_mode == "v"
+        set statusline+=%#VisualMode#
+        set statusline+=\ %{'VISUAL'}
+    elseif the_mode == "V"
+        set statusline+=%#VisualMode#
+        set statusline+=\ %{'V-LINE'}
+    elseif the_mode == ""
+        set statusline+=%#VisualMode#
+        set statusline+=\ %{'V-BLOCK'}
+    endif
+    set statusline+=\ 
+
+    set statusline+=%#LineNr#
+    set statusline+=\ %f\                          " file name
+    set statusline+=%h%m%r%w                     " flags
+
+    set statusline+=%=                           " right align
+
+    set statusline+=%{strlen(&ft)?&ft:'none'}\    " filetype
+
+    set statusline+=%#PmenuSel#
+    set statusline+=\ %{strlen(&fenc)?&fenc:&enc}  " encoding
+    set statusline+=[%{&fileformat}]\              " file format
+
+    if the_mode == "n"
+        if a:enter == 0
+            set statusline+=%#NormalMode#
+        else
+            set statusline+=%#InsertMode#
+        endif
+    elseif the_mode == "i"
+        set statusline+=%#InsertMode#
+    elseif the_mode == "v"
+        set statusline+=%#VisualMode#
+    elseif the_mode == "V"
+        set statusline+=%#VisualMode#
+    elseif the_mode == ""
+        set statusline+=%#VisualMode#
+    endif
+    set statusline+=\ %3p％\ 
+    set statusline+=\ %l/%L\ \ 
+    set statusline+=\ %c\ 
+endfunction
+
+" }}}
+
+augroup reload_vimrc
+    autocmd!
+    autocmd bufwritepost $MYVIMRC nested source $MYVIMRC
+augroup END
+
+if has('nvim')
+    set ttimeout
+    set ttimeoutlen=0
+    if $TERM_PROGRAM =~ "iTerm"
+        let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+        let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+        set background=dark
+        colorscheme solarized8_dark
+        set mouse=
+        set termguicolors
+    else
+        colorscheme molokai
+        let g:airline_theme="badwolf"
+    endif
+    tnoremap <Esc> <C-\><C-n>
+else
+    colorscheme molokai
+    let g:airline_theme="badwolf"
+endif
+
+" use utf-8
+scriptencoding utf-8
+
+language en_US
+
+set hidden
+set number          " enable line numbers
+set laststatus=2    " always show statusbar
+set shell=bash
+set backspace=indent,eol,start  " make backspace work as expected
+let g:tex_flavor = "latex"      " tex files are latex files
+let g:sh_fold_enabled=1
+set scrolloff=2     " keep two line above and below
+set sidescrolloff=80
+set autoread        " reload files that were changed
+set backupcopy=yes
+set noshowmode
+
+autocmd BufEnter * let &titlestring = 'vim ' . expand("%:t")
+set title
+
+set showtabline=2
+
+" configure listchars {{{
+set list
+set listchars-=eol:$            " do not show newlines
+set listchars+=extends:>,precedes:<     " indicate long lines
+" }}}
+
+" keep splits equally sized {{{
+augroup Resize
+  au!
+  au VimResized * exe "normal \<c-w>="
+augroup END
+
+set equalalways     " make windows the same size
+" }}}
+
+" cursorline settings {{{
+" show cursorline in active buffer
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
+" }}}
+
+" tabs, spaces, wrapping {{{
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set shiftround
+let &colorcolumn=join(range(81,999),",")
+set smarttab
+
+" show tabs
+set listchars+=tab:>-
+
+" highlight trailing whitespace {{{
+hi ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+hi clear ExtraWhitespace
+
+augroup trailing
+    au!
+    au InsertEnter * hi clear ExtraWhitespace
+    au InsertLeave * hi ExtraWhitespace ctermbg=red guibg=red
+augroup END
+" }}}
+" }}}
+
+" indenting {{{
+set cindent
+set smartindent
+set autoindent
+" }}}
+
+" wildmenu {{{
+set wildmode=longest,full
+set wildmenu
+
+set wildignore+=.DS_Store                       " on OS X
+set wildignore+=.git                            " version control
+set wildignore+=*.bcf,*.run.xml,*.fdb_latexmk   " Latex files
+set wildignore+=*.out,*.toc,*.bbl,*.fls,*.blg   " more Latex files
+set wildignore+=*.aux                           " even more Latex files
+set wildignore+=*.jpg,*.gif,*.bmp,*.png,*.jpeg  " images
+set wildignore+=*.class,*.jar                   " java files
+set wildignore+=*.log
+set wildignore+=*.pdf
+set wildignore+=*.gz*,*.tar,*.zip                " archives
+" }}}
+
+" return to the same line when reopening a file {{{
+augroup line_return
+    au!
+    au BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") < line("$") |
+        \       execute 'normal! g`"zvzz' |
+        \ endif
+augroup END
+" }}}
+
+" backup {{{
+set undodir=~/.vim/tmp/undo//
+set undofile
+set nobackup
+set noswapfile
+set history=1000
+" }}}
+
+" search {{{
+set ignorecase
+set smartcase
+set showmatch
+set hlsearch
+set incsearch
+" }}}
+
+" don't beep {{{
+set visualbell
+set noerrorbells
+" }}}
+
+" keymappings {{{
+inoremap jk <ESC>
+
+" don't move on *
+nnoremap * *<C-o>
+
+" go to end with <C-e> in command-line mode
+cnoremap <C-e> <end>
+" go to start with <C-a> in command-line mode
+cnoremap <C-a> <home>
+
+cmap w!! w !sudo tee > /dev/null %
+
+" remove highlights with C-c in normal mode
+nmap <silent> <C-c> :let @/ = ""<CR>
+
+nnoremap q: :q
+nnoremap Q <NOP>
+
+" prevent using arrow keys {{{
+map <up> <nop>
+map <down> <nop>
+
+nnoremap <silent> <Left> :bprev<CR>
+nnoremap <silent> <Right> :bnext<CR>
+inoremap <silent> <Left> <C-o>:bprev<CR>
+inoremap <silent> <Right> <C-o>:bnext<CR>
+
+" }}}
+" }}}
+
+let g:terminal_color_0  = '#002833'
+let g:terminal_color_1  = '#dc322f'
+let g:terminal_color_2 = '#586e75'
+let g:terminal_color_3 = '#657b83'
+let g:terminal_color_4 = '#839496'
+let g:terminal_color_5 = '#6c6ec6'
+let g:terminal_color_6 = '#93a1a1'
+let g:terminal_color_7 = '#fdf6e3'
+let g:terminal_color_8  = '#003541'
+let g:terminal_color_9  = '#cb4b16'
+let g:terminal_color_10  = '#859901'
+let g:terminal_color_11  = '#b58901'
+let g:terminal_color_12  = '#268bd2'
+let g:terminal_color_13  = '#d33682'
+let g:terminal_color_14  = '#2aa198'
+let g:terminal_color_15  = '#eee8d5'
+" }}}
+
+" vim:fdm=marker:
