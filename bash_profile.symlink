@@ -30,7 +30,6 @@ export GIT_PS1_SHOWCOLORHINTS="1"
 
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
-export HISTIGNORE="pwd*:git c:git amend:git {diff,log,push,pull}"
 export HISTFILESIZE=3000
 export HISTSIZE=3000
 export HISTCONTROL=ignoreboth:erasedups
@@ -97,6 +96,9 @@ shopt -s cdspell
 ITERM_INTEGRATION_FILE="$HOME/.iterm2_shell_integration.bash"
 [[ -r $ITERM_INTEGRATION_FILE ]] && [[ -f $ITERM_INTEGRATION_FILE ]] && source $ITERM_INTEGRATION_FILE
 
+COMPLETION_FILE="/usr/local/Cellar/bash-completion/1.3_2/etc/bash_completion"
+[[ -f  $COMPLETION_FILE ]] && source $COMPLETION_FILE
+
 # aliases {{{
 alias ..="cd .."
 alias psql="psql -h localhost "
@@ -116,6 +118,8 @@ alias la="$ls -F --color -a "
 alias ll="$ls -F --color -l "
 
 alias grep="grep --color "
+alias ssh="ssh -4C"
+alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 # }}}
 
 # vim:fdm=marker:

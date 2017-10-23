@@ -20,25 +20,45 @@ Plug 'EinfachToll/DidYouMean'
 Plug 'chrisbra/csv.vim'
 Plug 'fluecke/dot.vim', {'for': 'dot'}
 Plug 'lifepillar/vim-solarized8'
+Plug 'tomasr/molokai'
 Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'mbbill/undotree'
-Plug 'tomasr/molokai'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-git', {'for': 'git'}
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-unimpaired'
 Plug 'vim-scripts/gnuplot.vim', {'for': 'gnuplot'}
-if has('python') && (v:version >= 704)
+if has('python') || has('python3')
     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-    Plug 'davidhalter/jedi-vim', {'for': 'python'}
 endif
 Plug 'chrisbra/Colorizer'
+Plug 'majutsushi/tagbar'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'godlygeek/tabular', {'on': 'Tabularize'}
 
 filetype plugin indent on
 call plug#end()
 " }}}
 
 " bundle settings {{{
+
+let g:deoplete#enable_at_startup = 1
+
+" airline {{{
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_powerline_fonts = 1
+let g:airline_right_alt_sep = ''
+let g:airline_section_b = '%<%f'
+let g:airline_section_c = '%{&modified?"":""}%{&readonly?"":""}'
+let g:airline_section_z = '%3p％   %l/%L   %2v'
+let airline#extensions#default#section_use_groupitems = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
+" }}}
 
 " undotree.vim {{{
 let g:undotree_WindowLayout = 3
@@ -58,84 +78,13 @@ let g:vimtex_fold_enabled = 1
 let g:vimtex_fold_manual = 1
 let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
 let g:vimtex_view_general_options = '@line @pdf @tex'
+
 " }}}
 " }}}
 
 " vim settings {{{
 
-" statusbar {{{
-autocmd InsertEnter * call SetStatusline(1, v:insertmode)
-autocmd InsertLeave * call SetStatusline(0, v:insertmode)
-autocmd BufEnter * call SetStatusline(0, v:insertmode)
-nnoremap <silent> <expr> <SID>SetStatusline SetStatusline(0, v:insertmode)
-vnoremap <silent> <expr> <SID>SetStatusline SetStatusline(0, v:insertmode)
-nnoremap <silent> <script> v v<SID>SetStatusline
-nnoremap <silent> <script> V V<SID>SetStatusline
-nnoremap <silent> <script> <C-v> <C-v><SID>SetStatusline
-vnoremap <silent> <script> v v<SID>SetStatusline
-vnoremap <silent> <script> V V<SID>SetStatusline
-vnoremap <silent> <script> <C-v> <C-v><SID>SetStatusline
-vnoremap <silent> <script> <ESC> <ESC><SID>SetStatusline
-
-function! SetStatusline(enter, mode)
-    set statusline=    " clear the statusline for when vimrc is reloaded
-    let the_mode = mode()
-    if the_mode == "n"
-        if a:enter == 0
-            set statusline+=%#NormalMode#
-            set statusline+=\ %{'NORMAL'}
-        else
-            set statusline+=%#InsertMode#
-            set statusline+=\ %{'INSERT'}
-        endif
-    elseif the_mode == "i"
-        set statusline+=%#InsertMode#
-        set statusline+=%{'INSERT'}
-    elseif the_mode == "v"
-        set statusline+=%#VisualMode#
-        set statusline+=\ %{'VISUAL'}
-    elseif the_mode == "V"
-        set statusline+=%#VisualMode#
-        set statusline+=\ %{'V-LINE'}
-    elseif the_mode == ""
-        set statusline+=%#VisualMode#
-        set statusline+=\ %{'V-BLOCK'}
-    endif
-    set statusline+=\ 
-
-    set statusline+=%#LineNr#
-    set statusline+=\ %f\                          " file name
-    set statusline+=%h%m%r%w                     " flags
-
-    set statusline+=%=                           " right align
-
-    set statusline+=%{strlen(&ft)?&ft:'none'}\    " filetype
-
-    set statusline+=%#PmenuSel#
-    set statusline+=\ %{strlen(&fenc)?&fenc:&enc}  " encoding
-    set statusline+=[%{&fileformat}]\              " file format
-
-    if the_mode == "n"
-        if a:enter == 0
-            set statusline+=%#NormalMode#
-        else
-            set statusline+=%#InsertMode#
-        endif
-    elseif the_mode == "i"
-        set statusline+=%#InsertMode#
-    elseif the_mode == "v"
-        set statusline+=%#VisualMode#
-    elseif the_mode == "V"
-        set statusline+=%#VisualMode#
-    elseif the_mode == ""
-        set statusline+=%#VisualMode#
-    endif
-    set statusline+=\ %3p％\ 
-    set statusline+=\ %l/%L\ \ 
-    set statusline+=\ %c\ 
-endfunction
-
-" }}}
+let g:python3_host_prog="/usr/local/bin/python3"
 
 augroup reload_vimrc
     autocmd!
@@ -146,11 +95,8 @@ if has('nvim')
     set ttimeout
     set ttimeoutlen=0
     if $TERM_PROGRAM =~ "iTerm"
-        let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-        let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-        set background=dark
-        colorscheme solarized8_dark
         set mouse=
+        colorscheme solarized8_light
         set termguicolors
     else
         colorscheme molokai
@@ -169,35 +115,30 @@ language en_US
 
 set hidden
 set number          " enable line numbers
-set laststatus=2    " always show statusbar
 set shell=bash
 set backspace=indent,eol,start  " make backspace work as expected
+
 let g:tex_flavor = "latex"      " tex files are latex files
 let g:sh_fold_enabled=1
-set scrolloff=2     " keep two line above and below
-set sidescrolloff=80
+set scrolloff=2     " keep two lines above and below
+set sidescrolloff=5
+
 set autoread        " reload files that were changed
 set backupcopy=yes
-set noshowmode
 
 autocmd BufEnter * let &titlestring = 'vim ' . expand("%:t")
 set title
+set titleold=kthxbye
 
+set laststatus=2    " always show statusbar
+set noshowmode
 set showtabline=2
 
 " configure listchars {{{
 set list
 set listchars-=eol:$            " do not show newlines
 set listchars+=extends:>,precedes:<     " indicate long lines
-" }}}
-
-" keep splits equally sized {{{
-augroup Resize
-  au!
-  au VimResized * exe "normal \<c-w>="
-augroup END
-
-set equalalways     " make windows the same size
+set listchars+=tab:>-
 " }}}
 
 " cursorline settings {{{
@@ -215,23 +156,7 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 set shiftround
-let &colorcolumn=join(range(81,999),",")
 set smarttab
-
-" show tabs
-set listchars+=tab:>-
-
-" highlight trailing whitespace {{{
-hi ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-hi clear ExtraWhitespace
-
-augroup trailing
-    au!
-    au InsertEnter * hi clear ExtraWhitespace
-    au InsertLeave * hi ExtraWhitespace ctermbg=red guibg=red
-augroup END
-" }}}
 " }}}
 
 " indenting {{{

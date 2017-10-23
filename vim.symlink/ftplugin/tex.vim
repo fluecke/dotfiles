@@ -1,7 +1,12 @@
-set textwidth=80
+" allow autocomplete for images
+set wildignore-=*.jpg
+set wildignore-=*.pdf
 
-set cole=2
+" spellcheck
+set spelllang=de_de
+set spell
 
-imap <buffer> [[     \begin{
-imap <buffer> ]]     <Plug>LatexCloseCurEnv
+imap [[ \begin{
+
+set tw=80
 
