@@ -17,34 +17,33 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'EinfachToll/DidYouMean'
+Plug 'bumaociyuan/vim-swift', {'for': 'swift'}
+Plug 'chrisbra/Colorizer'
 Plug 'chrisbra/csv.vim'
 Plug 'fluecke/dot.vim', {'for': 'dot'}
+Plug 'junegunn/vim-easy-align'
+Plug 'lervag/vimtex'
 Plug 'lifepillar/vim-solarized8'
-Plug 'tomasr/molokai'
-Plug 'lervag/vimtex', {'for': 'tex'}
+Plug 'majutsushi/tagbar'
 Plug 'mbbill/undotree'
+Plug 'tomasr/molokai'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-git', {'for': 'git'}
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-unimpaired'
-Plug 'vim-scripts/gnuplot.vim', {'for': 'gnuplot'}
+Plug 'tpope/vim-markdown'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'airblade/vim-gitgutter'
 if has('python') || has('python3')
     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 endif
-Plug 'chrisbra/Colorizer'
-Plug 'majutsushi/tagbar'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'godlygeek/tabular', {'on': 'Tabularize'}
 
 filetype plugin indent on
 call plug#end()
 " }}}
 
 " bundle settings {{{
-
-let g:deoplete#enable_at_startup = 1
 
 " airline {{{
 let g:airline_left_sep = ''
@@ -80,6 +79,10 @@ let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSuppor
 let g:vimtex_view_general_options = '@line @pdf @tex'
 
 " }}}
+
+" markdown {{{
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'ruby']
+" }}}
 " }}}
 
 " vim settings {{{
@@ -96,8 +99,9 @@ if has('nvim')
     set ttimeoutlen=0
     if $TERM_PROGRAM =~ "iTerm"
         set mouse=
-        colorscheme solarized8_light
+        set background=dark
         set termguicolors
+        colorscheme solarized8
     else
         colorscheme molokai
         let g:airline_theme="badwolf"
@@ -128,7 +132,6 @@ set backupcopy=yes
 
 autocmd BufEnter * let &titlestring = 'vim ' . expand("%:t")
 set title
-set titleold=kthxbye
 
 set laststatus=2    " always show statusbar
 set noshowmode
@@ -137,8 +140,7 @@ set showtabline=2
 " configure listchars {{{
 set list
 set listchars-=eol:$            " do not show newlines
-set listchars+=extends:>,precedes:<     " indicate long lines
-set listchars+=tab:>-
+set listchars+=tab:\ ,extends:>,precedes:<     " indicate long lines
 " }}}
 
 " cursorline settings {{{
@@ -154,7 +156,6 @@ augroup END
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set expandtab
 set shiftround
 set smarttab
 " }}}
@@ -230,6 +231,12 @@ nmap <silent> <C-c> :let @/ = ""<CR>
 
 nnoremap q: :q
 nnoremap Q <NOP>
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 " prevent using arrow keys {{{
 map <up> <nop>
