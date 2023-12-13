@@ -42,6 +42,13 @@ return {
 				{
 					filter = {
 						event = "msg_show",
+						min_height = 5,
+					},
+					view = "split",
+				},
+				{
+					filter = {
+						event = "msg_show",
 						any = {
 							{ find = "%d+L, %d+B" },
 							{ find = "; after #%d+" },
