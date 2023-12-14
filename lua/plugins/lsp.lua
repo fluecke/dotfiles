@@ -24,8 +24,9 @@ return {
 
 			local on_attach = require('utils.lsp').on_attach
 			local capabilities = require('cmp_nvim_lsp').default_capabilities()
+			local lspconfig = require('lspconfig')
 
-			require("lspconfig").lua_ls.setup({
+			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
 				settings = {
@@ -37,7 +38,7 @@ return {
 				}
 			})
 
-			require('lspconfig').jsonls.setup {
+			lspconfig.jsonls.setup {
 				capabilities = capabilities,
 				on_attach = on_attach,
 				settings = {
@@ -48,7 +49,7 @@ return {
 				},
 			}
 
-			require("lspconfig").yamlls.setup({
+			lspconfig.yamlls.setup {
 				capabilities = capabilities,
 				on_attach = on_attach,
 				settings = {
@@ -77,12 +78,12 @@ return {
 						}
 					}
 				}
-			})
+			}
 
-			require("lspconfig").dockerls.setup({
+			lspconfig.dockerls.setup {
 				capabilities = capabilities,
 				on_attach = on_attach,
-			})
+			}
 		end,
 		dependencies = {
 			"williamboman/mason.nvim",
