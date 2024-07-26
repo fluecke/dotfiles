@@ -1,11 +1,8 @@
-vim.opt.clipboard:append {
-	"unnamed"
-}
-
 -- general behavior
 vim.opt.backspace = "indent,eol,start"
 vim.o.autoread = true
 vim.opt.pumblend = 0
+vim.o.mousescroll = "ver:0,hor:0"
 
 -- Display options
 vim.opt.number = true
@@ -63,3 +60,4 @@ vim.opt.wildignore:append({
 -- Folding
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldlevelstart = 99

@@ -2,7 +2,12 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			{ "folke/neodev.nvim", opts = {} },
+			{
+				"folke/lazydev.nvim",
+				opts = {
+					ft = 'lua'
+				}
+			},
 		}
 	},
 	{ "b0o/schemastore.nvim" },
@@ -10,7 +15,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup {
-				ensure_installed = { "lua_ls", "yamlls", "ruby_ls" },
+				ensure_installed = { "lua_ls", "yamlls" },
 			}
 
 			local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
@@ -84,6 +89,35 @@ return {
 				capabilities = capabilities,
 				on_attach = on_attach,
 			}
+
+			lspconfig.html.setup {
+				capabilities = capabilities,
+				on_attach = on_attach,
+			}
+
+			lspconfig.sourcekit.setup {
+				capabilities = capabilities,
+				on_attach = on_attach,
+				cmd = {
+					"xcrun",
+					"sourcekit-lsp"
+				},
+			}
+
+			lspconfig.solargraph.setup {
+				capabilities = capabilities,
+				on_attach = on_attach,
+			}
+
+			lspconfig.tsserver.setup {
+				capabilities = capabilities,
+				on_attach = on_attach,
+			}
+
+			lspconfig.jedi_language_server.setup {
+				capabilities = capabilities,
+				on_attach = on_attach,
+			}
 		end,
 		dependencies = {
 			"williamboman/mason.nvim",
@@ -92,6 +126,10 @@ return {
 	{
 		"williamboman/mason.nvim",
 		build = ":MasonUpdate",
-		opts = {}
+		opts = {
+			ui = {
+				border = "rounded"
+			}
+		}
 	},
 }

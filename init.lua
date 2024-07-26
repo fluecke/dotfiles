@@ -18,7 +18,14 @@ require("lazy").setup({
 	},
 	defaults = {
 		lazy = false,
-		version = false,           -- always use the latest git commit
+		version = false, -- always use the latest git commit
+	},
+	ui = {
+		border = "rounded",
+		backdrop = 100,
+	},
+	install = {
+		colorscheme = { "solarized" }
 	},
 	checker = { enabled = true }, -- automatically check for plugin updates
 	performance = {

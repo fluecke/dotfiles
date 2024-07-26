@@ -15,8 +15,9 @@ function M.on_attach(client, bufnr)
 		return vim.tbl_extend("keep", more_opts, default_opts)
 	end
 
-	require("which-key").register({
-		["<leader>l"] = { name = "LSP" },
+	require("which-key").add({
+		{ "<leader>l",  group = "LSP" },
+		{ "<leader>lw", group = "Workspaces" },
 	}, { buffer = bufnr })
 
 	vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts({ desc = "Go to declaration" }))
@@ -26,8 +27,16 @@ function M.on_attach(client, bufnr)
 	vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts({ desc = "Show signature information" }))
 	vim.keymap.set('n', '<leader>lD', vim.lsp.buf.type_definition, opts({ desc = "Type definition" }))
 	vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, opts({ desc = "Rename" }))
+	vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, opts({ desc = "Format" }))
 	vim.keymap.set({ 'n', 'v' }, '<leader>la', vim.lsp.buf.code_action, opts({ desc = "Code action" }))
 	vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts({ desc = "Show references" }))
+
+	-- workspace management. Necessary for multi-module projects
+	vim.keymap.set('n', '<leader>lwa', vim.lsp.buf.add_workspace_folder, opts({ desc = "Add workspace folder" }))
+	vim.keymap.set('n', '<leader>lwr', vim.lsp.buf.remove_workspace_folder, opts({ desc = "Remove workspace folder" }))
+	vim.keymap.set('n', '<leader>lwl', function()
+		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+	end, opts({ desc = "List workspace folders" }))
 
 	if client.supports_method("textDocument/formatting") then
 		local augroup = vim.api.nvim_create_augroup("LspFormatting", { clear = false })

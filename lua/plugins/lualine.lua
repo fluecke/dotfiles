@@ -20,7 +20,7 @@ return {
 						icon = "󰀘 "
 					}
 				},
-				lualine_b = { "branch", "diff", "diagnostics" },
+				lualine_b = { "branch", "diff" },
 				lualine_c = {
 					{
 						"filename",
@@ -34,7 +34,7 @@ return {
 							newfile = "[New]", -- Text to show for newly created file before first write
 						},
 						cond = function()
-							return vim.bo.ft ~= "fugitive"
+							return vim.bo.ft ~= "fugitive" and vim.bo.ft ~= "toggleterm"
 						end,
 					},
 					{
@@ -47,8 +47,21 @@ return {
 					},
 				},
 				lualine_x = { "encoding", "fileformat", "filetype" },
-				lualine_y = { "progress" },
-				lualine_z = { "location" },
+				lualine_y = { "diagnostics" },
+				lualine_z = {
+					"location",
+					{
+						function()
+							local reg = vim.fn.reg_recording()
+							if reg == "" then return "" end -- not recording
+							return "󰦚 " .. reg
+						end,
+						cond = function()
+							local reg = vim.fn.reg_recording()
+							return reg ~= ""
+						end
+					}
+				},
 			},
 			tabline = {
 				lualine_c = {

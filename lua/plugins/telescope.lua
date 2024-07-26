@@ -14,8 +14,8 @@ return {
 		cmd = "Telescope",
 		version = false, -- telescope did only one release, so use HEAD for now
 		init = function()
-			require("which-key").register({
-				["<leader>f"] = { name = "Find" },
+			require("which-key").add({
+				{ "<leader>f", group = "Find" },
 			})
 		end,
 		keys = {

@@ -3,8 +3,8 @@ return {
 		"tpope/vim-fugitive",
 		lazy = false,
 		init = function()
-			require("which-key").register({
-				["<leader>g"] = { name = "Git" },
+			require("which-key").add({
+				{ "<leader>g", group = "Git" },
 			})
 		end,
 		keys = {
