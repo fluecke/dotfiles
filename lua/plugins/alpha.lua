@@ -45,7 +45,7 @@ return {
 			dashboard.section.header.val = headers[math.random(#headers)]
 
 			dashboard.section.buttons.val = {
-				dashboard.button("e", "􀈷  New file", "<cmd>ene!<CR>"),
+				dashboard.button("i", "􀈷  New file", "<cmd>ene! | startinsert<CR>"),
 				dashboard.button("ff", "  Find file", "<cmd>Telescope find_files<CR>"),
 				dashboard.button("ll", "  Load Last Session", "<cmd>SessionManager load_last_session<CR>"),
 				dashboard.button("ld", "  Load Directory Session", "<cmd>SessionManager load_current_dir_session<CR>"),
