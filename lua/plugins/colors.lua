@@ -1,8 +1,4 @@
 return {
-	-- {
-	-- 	dir = "~/Developer/Personal Projects/appearance-notifier.nvim",
-	-- 	opts = {}
-	-- },
 	{
 		"cormacrelf/dark-notify",
 		lazy = false,
@@ -12,22 +8,17 @@ return {
 		end
 	},
 	{
-		"ishan9299/nvim-solarized-lua",
+		'maxmx03/solarized.nvim',
 		lazy = false,
-		priority = 1000,
-		config = function()
+		priority = 500,
+		init = function()
 			vim.cmd.colorscheme 'solarized'
 		end,
+		opts = {
+			transparent = {
+				enabled = true,
+			},
+			variant = "autumn"
+		}
 	},
-	-- {
-	-- 	'maxmx03/solarized.nvim',
-	-- 	lazy = false,
-	-- 	opts = {
-	-- 		theme = "neo"
-	-- 	},
-	-- 	priority = 1000,
-	-- 	config = function()
-	-- 		vim.cmd.colorscheme 'solarized'
-	-- 	end,
-	-- },
 }
