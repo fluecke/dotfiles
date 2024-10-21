@@ -8,7 +8,10 @@ return {
 					ft = 'lua'
 				}
 			},
-		}
+		},
+		config = function()
+			require('lspconfig.ui.windows').default_options.border = 'rounded'
+		end
 	},
 	{ "b0o/schemastore.nvim" },
 	{
