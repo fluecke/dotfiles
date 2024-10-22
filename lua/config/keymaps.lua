@@ -6,8 +6,17 @@ vim.keymap.set("n", "<esc>", [[:let @/=""<CR>]], { silent = true, desc = "Clear 
 require("which-key").add({
 	{ "<leader>b", group = "Buffer" },
 })
-vim.keymap.set("n", "<leader>bp", [[:bp<CR>]], { silent = true, desc = "Previous" })
-vim.keymap.set("n", "<leader>bn", [[:bn<CR>]], { silent = true, desc = "Next" })
+
+vim.keymap.set("n", "<leader>bp", function()
+	local count = vim.v.count < 1 and 1 or vim.v.count
+	vim.cmd(count .. "bprevious")
+end, { silent = true, desc = "Previous" })
+
+vim.keymap.set("n", "<leader>bn", function()
+	local count = vim.v.count < 1 and 1 or vim.v.count
+	vim.cmd(count .. "bnext")
+end, { silent = true, desc = "Next" })
+
 vim.keymap.set("n", "<leader>bg", function()
 	if vim.v.count < 1 then
 		return
