@@ -28,5 +28,5 @@ return {
 				ignore_install = {}
 			})
 		end
-	}
+	},
 }
