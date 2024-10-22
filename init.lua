@@ -22,6 +22,9 @@ require("lazy").setup({
 	},
 	ui = {
 		border = "rounded",
+		wrap = false,
+		title = " Lazy.nvim ",
+		pills = false,
 		backdrop = 100,
 	},
 	install = {
