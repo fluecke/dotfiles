@@ -11,6 +11,7 @@ return {
 			shade_terminals = false,
 			auto_scroll = true,
 			open_mapping = [[<c-/>]],
+			persist_mode = false,
 		}
 	},
 	{
