@@ -18,7 +18,16 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup {
-				ensure_installed = { "lua_ls", "yamlls" },
+				ensure_installed = {
+					"lua_ls",
+					"yamlls",
+					"jsonls",
+					"dockerls",
+					"html",
+					"solargraph",
+					"ts_ls",
+					"jedi_language_server"
+				},
 			}
 
 			local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview

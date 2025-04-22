@@ -8,6 +8,8 @@ return {
 				modules = {},
 				auto_install = true,
 				ensure_installed = {
+					"comment",
+					"bash",
 					"c",
 					"dockerfile",
 					"html",
