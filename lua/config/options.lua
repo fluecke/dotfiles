@@ -1,28 +1,38 @@
 -- general behavior
-vim.opt.backspace = "indent,eol,start"
+vim.o.backspace = "indent,eol,start"
 vim.o.autoread = true
-vim.opt.pumblend = 0
+vim.o.pumblend = 0
 vim.o.mousescroll = "ver:0,hor:0"
 
--- Display options
-vim.opt.number = true
-vim.opt.title = true
-vim.opt.showmode = false
+-- Display oions
+vim.o.number = true
+vim.o.title = true
+vim.o.showmode = false
+-- vim.o.winborder = 'rounded'
+vim.diagnostic.config({
+	virtual_lines = {
+		-- Only show virtual line diagnostics for the current cursor line
+		current_line = true,
+	},
+})
 
 -- Backup
-vim.opt.undofile = true
-vim.opt.backup = false
-vim.opt.swapfile = false
-vim.opt.history = 1000
+vim.o.undofile = true
+vim.o.backup = false
+vim.o.swapfile = false
+vim.o.history = 1000
 
 -- tabs, spaces, wrapping
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.shiftround = true
-vim.opt.smarttab = true
-vim.opt.scrolloff = 2
-vim.opt.sidescrolloff = 5
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
+vim.o.shiftround = true
+vim.o.smarttab = true
+vim.o.scrolloff = 2
+vim.o.sidescrolloff = 5
+vim.o.wrap = true
+vim.o.linebreak = true
+vim.o.breakindentopt = "shift:4"
 
 -- Be more quiet
 vim.opt.shortmess:append {
@@ -32,17 +42,17 @@ vim.opt.shortmess:append {
 	I = true, -- don't give the intro message when starting Vim
 	s = true, -- don't give "search hit BOTTOM, continuing at TOP" messages
 }
-vim.opt.report = 9999
+vim.o.report = 9999
 
 -- Search
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.showmatch = true
-vim.opt.hlsearch = true
-vim.opt.incsearch = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.showmatch = true
+vim.o.hlsearch = true
+vim.o.incsearch = true
 
 -- Wildmenu
-vim.opt.wildmenu = true
+vim.o.wildmenu = true
 vim.opt.wildmode = {
 	"longest",
 	"full",
@@ -58,6 +68,6 @@ vim.opt.wildignore:append({
 })
 
 -- Folding
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.foldlevelstart = 99
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+vim.o.foldlevelstart = 99

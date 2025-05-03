@@ -1,18 +1,39 @@
 return {
 	{
-		"folke/noice.nvim",
+		"folke/snacks.nvim",
+		priority = 1000,
 		lazy = false,
+		---@type snacks.Config
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+			bigfile = { enabled = true },
+			dashboard = { enabled = false },
+			explorer = { enabled = true },
+			indent = { enabled = true },
+			input = { enabled = true },
+			picker = { enabled = true },
+			notifier = {
+				enabled = true,
+				style = 'fancy'
+			},
+			quickfile = { enabled = true },
+			scope = { enabled = true },
+			scroll = { enabled = false },
+			statuscolumn = { enabled = false },
+			words = { enabled = false },
+		},
+	},
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
 		opts = {
 			lsp = {
 				documentation = {
 					opts = {
 						border = 'rounded'
 					}
-				},
-				override = {
-					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-					["vim.lsp.util.stylize_markdown"] = true,
-					["cmp.entry.get_documentation"] = true,
 				},
 			},
 			presets = {
@@ -30,49 +51,8 @@ return {
 							},
 						},
 					},
-					search_down = {
-						icon = " ",
-					},
-					search_up = {
-						icon = " ",
-					},
 				},
 			},
-			routes = {
-				{
-					filter = {
-						event = "msg_show",
-						min_height = 5,
-					},
-					view = "split",
-				},
-				{
-					filter = {
-						event = "msg_show",
-						any = {
-							{ find = "%d+L, %d+B" },
-							{ find = "; after #%d+" },
-							{ find = "; before #%d+" },
-							{ find = "written" },
-							{ find = "Already at newest change" },
-							{ find = "Already at oldest change" },
-							{ find = "Pattern not found" },
-						},
-					},
-					opts = { skip = true },
-				},
-			},
-		},
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-			{
-				"rcarriga/nvim-notify",
-				opts = {
-					fps = 40,
-					stages = "slide",
-					timeout = 3000
-				}
-			}
 		},
 	},
 }

@@ -16,10 +16,6 @@ require("lazy").setup({
 	spec = {
 		{ import = "plugins" },
 	},
-	defaults = {
-		lazy = false,
-		version = false, -- always use the latest git commit
-	},
 	ui = {
 		border = "rounded",
 		wrap = false,

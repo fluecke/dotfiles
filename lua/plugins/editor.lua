@@ -22,41 +22,4 @@ return {
 			{ "<leader>ghp", "<cmd>Gitsigns previous_hunk<CR>",       desc = "Previous hunk" },
 		}
 	},
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		---@module "ibl"
-		---@type ibl.config
-		opts = {
-			indent = {
-				char = "│",
-				tab_char = "│",
-			},
-			scope = {
-				enabled = true,
-				show_start = false,
-				show_end = false,
-				include = {
-					node_type = {
-						lua = { "return_statement", "table_constructor" }
-					},
-				}
-			},
-			exclude = {
-				filetypes = {
-					"help",
-					"alpha",
-					"dashboard",
-					"neo-tree",
-					"Trouble",
-					"trouble",
-					"lazy",
-					"mason",
-					"notify",
-					"toggleterm",
-					"lazyterm",
-				},
-			},
-		},
-		main = "ibl",
-	},
 }
