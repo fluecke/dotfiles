@@ -32,6 +32,7 @@ vim.o.scrolloff = 2
 vim.o.sidescrolloff = 5
 vim.o.wrap = true
 vim.o.linebreak = true
+vim.o.breakindent = true
 vim.o.breakindentopt = "shift:4"
 
 -- Be more quiet

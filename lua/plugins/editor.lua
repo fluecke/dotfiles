@@ -4,11 +4,29 @@ return {
 	{ 'stevearc/stickybuf.nvim', opts = {}, },
 	{ "tpope/vim-characterize" },
 	{
+		'MeanderingProgrammer/render-markdown.nvim',
+		disabled = false,
+		dependencies = { 'nvim-treesitter/nvim-treesitter'},
+		---@module 'render-markdown'
+		---@type render.md.UserConfig
+		opts = {
+			completions = {
+				blink = {
+					enabled = true
+				},
+				lsp = {
+					enabled = true
+				}
+			}
+		},
+	},
+	{
 		"lewis6991/gitsigns.nvim",
 		opts = {},
 		lazy = false,
 		init = function()
 			require("which-key").add({
+				{ "<leader>g", group = "Git" },
 				{ "<leader>gh", group = "Hunk" }
 			})
 		end,
