@@ -8,7 +8,7 @@ vim.o.mousescroll = "ver:0,hor:0"
 vim.o.number = true
 vim.o.title = true
 vim.o.showmode = false
--- vim.o.winborder = 'rounded'
+vim.o.winborder = 'rounded'
 vim.diagnostic.config({
 	virtual_lines = {
 		-- Only show virtual line diagnostics for the current cursor line

@@ -5,11 +5,13 @@ return {
 	{ "tpope/vim-characterize" },
 	{
 		'MeanderingProgrammer/render-markdown.nvim',
-		disabled = false,
 		dependencies = { 'nvim-treesitter/nvim-treesitter'},
 		---@module 'render-markdown'
 		---@type render.md.UserConfig
 		opts = {
+			pipe_table = {
+				preset = 'round'
+			},
 			completions = {
 				blink = {
 					enabled = true
@@ -21,8 +23,15 @@ return {
 		},
 	},
 	{
-		"lewis6991/gitsigns.nvim",
+		'SCJangra/table-nvim',
+		ft = 'markdown',
 		opts = {},
+	},
+	{
+		"lewis6991/gitsigns.nvim",
+		disabled = vim.g.vscode,
+		opts = {
+		},
 		lazy = false,
 		init = function()
 			require("which-key").add({
