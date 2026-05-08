@@ -1,5 +1,6 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/.gem/ruby/2.6.0/bin:$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.bin:$PATH
+export PATH="/opt/homebrew/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/florian/.oh-my-zsh"
@@ -8,7 +9,12 @@ export ZSH="/Users/florian/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="avit"
+SPACESHIP_PACKAGE_SYMBOL="􀐚 "
+SPACESHIP_NODE_SYMBOL="\ue718 "
+SPACESHIP_EXEC_TIME_SHOW=false
+SPACESHIP_DOCKER_SYMBOL="\uf308 "
+SPACESHIP_RUBY_SYMBOL="\ue23e "
+ZSH_THEME="spaceship"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -68,7 +74,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git osx zsh-completions zsh_reload)
+plugins=(git osx zsh-completions zsh_reload docker rbenv)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -102,7 +108,15 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 compdef _gnu_generic xcodebuild
 
 alias vim=nvim
-export LC_ALL=en_US
+export LC_ALL=en_US.UTF-8
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+function zipedit(){
+    echo "Usage: zipedit archive.zip file.txt"
+    unzip "$1" "$2" -d /tmp 
+    nvim /tmp/$2 && zip -j --update "$1"  "/tmp/$2" 
+    rm /tmp/$2
+}
+
+# begin appcenter completion
+. <(appcenter --completion)
+# end appcenter completion
