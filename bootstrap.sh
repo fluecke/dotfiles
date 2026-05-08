@@ -106,11 +106,10 @@ install_dotfiles () {
 
   local overwrite_all=false backup_all=false skip_all=false
 
-  for src in $(find "$DOTFILES_ROOT" -maxdepth 1 -name '*.symlink')
-  do
+  while IFS= read -r src; do
     dst="$HOME/.$(basename "${src%.*}")"
     link_file "$src" "$dst"
-  done
+  done < <(find "$DOTFILES_ROOT" -maxdepth 1 -name '*.symlink')
 }
 
 install_config_files () {
@@ -120,11 +119,10 @@ install_config_files () {
 
   mkdir -p "$HOME/.config"
 
-  for src in $(find "$DOTFILES_ROOT/config" -maxdepth 1 -name '*.symlink' 2>/dev/null)
-  do
+  while IFS= read -r src; do
     dst="$HOME/.config/$(basename "${src%.*}")"
     link_file "$src" "$dst"
-  done
+  done < <(find "$DOTFILES_ROOT/config" -maxdepth 1 -name '*.symlink' 2>/dev/null)
 }
 
 install_dotfiles
