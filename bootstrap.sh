@@ -2,7 +2,7 @@
 # see https://github.com/holman/dotfiles
 # bootstrap installs things.
 
-cd "$(dirname "$0")/.."
+cd "$(dirname "$0")"
 DOTFILES_ROOT=$(pwd)
 
 set -e
@@ -106,12 +106,27 @@ install_dotfiles () {
 
   local overwrite_all=false backup_all=false skip_all=false
 
-  for src in $(find "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink')
+  for src in $(find "$DOTFILES_ROOT" -maxdepth 1 -name '*.symlink')
   do
     dst="$HOME/.$(basename "${src%.*}")"
     link_file "$src" "$dst"
   done
 }
 
+install_config_files () {
+  info 'installing config files'
+
+  local overwrite_all=false backup_all=false skip_all=false
+
+  mkdir -p "$HOME/.config"
+
+  for src in $(find "$DOTFILES_ROOT/config" -maxdepth 1 -name '*.symlink' 2>/dev/null)
+  do
+    dst="$HOME/.config/$(basename "${src%.*}")"
+    link_file "$src" "$dst"
+  done
+}
+
 install_dotfiles
+install_config_files
 
