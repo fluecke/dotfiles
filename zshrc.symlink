@@ -94,6 +94,3 @@ source <(fzf --zsh)
 
 compdef _gnu_generic xcodebuild
 compdef _gnu_generic openssl
-
-# Created by `pipx` on 2025-12-09 08:36:56
-export PATH="$PATH:/Users/florian/.local/bin"
