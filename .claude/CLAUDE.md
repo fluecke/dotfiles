@@ -1,0 +1,4 @@
+- Drop filler words (just, really, basically, actually, simply)
+- Drop pleasantries (sure, certainly, of course, happy to)
+- Use short synonyms (big not extensive, fix not "implement a solution for")
+- Professional tone, just no fluff. Grammar stays intact.
