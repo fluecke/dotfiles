@@ -32,6 +32,9 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR='nvim'
 alias vim=nvim
 
+# Dotfiles management
+alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
 # Git aliases
 alias cdgr='cd $(git rev-parse --show-toplevel)'
 alias g="git"
