@@ -25,3 +25,36 @@
 	trustExitCode = true
 [fetch]
 	prune = true
+[alias]
+	a    = add
+	au   = add -u
+	br   = branch
+	c    = commit
+	ca   = commit --amend
+	can  = commit --amend --no-edit
+	co   = checkout
+	d    = diff
+	ds   = diff --staged
+	dt   = difftool
+	dtd  = difftool --dir-diff
+	f    = fetch
+	fa   = fetch --all
+	l    = pull
+	lg   = log
+	m    = merge
+	p    = push
+	pf   = push -f
+	pu   = push -u origin HEAD
+	rh   = reset --hard
+	rs   = restore
+	rst  = restore --staged
+	s    = submodule
+	su   = submodule update
+	sui  = submodule update --init --recursive
+	st   = status --renames
+	sw   = switch
+	wipe = !git reset --hard && git clean -df
+	wipex = !git reset --hard && git clean -dfx
+	w    = worktree
+	wa   = worktree add
+	wr   = worktree remove
