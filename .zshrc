@@ -33,6 +33,7 @@ export EDITOR='nvim'
 alias vim=nvim
 
 # Dotfiles management
+alias dot='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # Git aliases
