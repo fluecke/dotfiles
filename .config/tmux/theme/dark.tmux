@@ -1,6 +1,6 @@
-BACKGROUND_COLOR_1=black
-BACKGROUND_COLOR_2=brightblack
-FONT_COLOR_1=brightcyan
-FONT_COLOR_2=brightblack
+BACKGROUND_COLOR_1=#073642
+BACKGROUND_COLOR_2=#002b36
+FONT_COLOR_1=#93a1a1
+FONT_COLOR_2=#002b36
 
 source ~/.config/tmux/theme/base.tmux

@@ -1,4 +1,4 @@
-TMUX_COLOR=magenta
+TMUX_COLOR=#d33682
 
 WINDOW_STATUS_FORMAT=" #I #W "
 
@@ -34,4 +34,4 @@ set -g message-style fg=red,bg=$BACKGROUND_COLOR_1
 set -g pane-border-style fg=$FONT_COLOR_1,bg=terminal
 set -g pane-border-lines heavy
 
-set -g pane-active-border-style fg=$TMUX_COLOR,bg=$BACKGROUND_COLOR_1
+set -g pane-active-border-style fg=$TMUX_COLOR,bg=terminal
