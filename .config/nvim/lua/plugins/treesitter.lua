@@ -4,7 +4,6 @@ return {
 		build = ":TSUpdate",
 		lazy = false,
 		opts = {
-			modules = {},
 			auto_install = true,
 			ensure_installed = {
 				"comment",
@@ -23,10 +22,6 @@ return {
 				"vimdoc",
 				"yaml",
 			},
-			sync_install = false,
-			highlight = { enable = true },
-			indent = { enable = true },
-			ignore_install = {}
 		},
 	}
 }

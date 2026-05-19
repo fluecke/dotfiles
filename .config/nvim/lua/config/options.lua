@@ -69,6 +69,4 @@ vim.opt.wildignore:append({
 })
 
 -- Folding
-vim.o.foldmethod = "expr"
-vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 vim.o.foldlevelstart = 99

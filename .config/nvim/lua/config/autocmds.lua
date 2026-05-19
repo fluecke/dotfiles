@@ -1,3 +1,15 @@
+vim.api.nvim_create_autocmd('FileType', {
+	callback = function()
+		local lang = vim.treesitter.language.get_lang(vim.bo.filetype)
+		if vim.tbl_contains(require('nvim-treesitter.config').get_installed(), lang) then
+			vim.treesitter.start()
+		end
+		vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+		vim.wo[0][0].foldmethod = 'expr'
+		vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+	end,
+})
+
 vim.api.nvim_create_autocmd('LspAttach', {
 	callback = function(args)
 		local bufnr = args.buf
