@@ -9,6 +9,12 @@ return {
 		---@module 'render-markdown'
 		---@type render.md.UserConfig
 		opts = {
+			latex = {
+				enabled = false
+			},
+			html = {
+				enabled = false
+			},
 			pipe_table = {
 				preset = 'round'
 			},
