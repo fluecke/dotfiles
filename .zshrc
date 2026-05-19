@@ -8,12 +8,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # Init rbenv so everything that follows uses rbenv ruby
 command -v rbenv &>/dev/null && eval "$(rbenv init - --no-rehash zsh)"
 
-if [[ "$TERM_PROGRAM" == "vscode" ]]; then
-  PROMPT='%~ %# '
-  RPROMPT=''
-  return
-fi
-
 export DEFAULT_USER=$USER
 export ZSH_THEME=sorin
 
